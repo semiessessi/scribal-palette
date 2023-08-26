@@ -516,10 +516,12 @@ function inputToTree(
 function registerInputArea(inputArea, outputAreas)
 {
 	inputArea.addEventListener('keyup',
-	(event) =>
-	{
-		updateOutputs(inputArea, outputAreas);
-	});
+		(event) =>
+		{
+			updateOutputs(inputArea, outputAreas);
+		});
+
+	updateOutputs(inputArea, outputAreas);
 }
 
 function displayTree(tree, outputArea)

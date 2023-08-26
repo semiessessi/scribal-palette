@@ -560,7 +560,7 @@ function htmlFromNode(node, size = 80)
 		}
 		else if((node.Operation == "*") && (node.Children.length >= 2))
 		{
-			return "<div style='display: inline-block;width:" + size + "px;height:" + size + "px;object-fit:contain'>" + htmlFromNode(node.Children[0], size / 2) + htmlFromNode(node.Children[1], size / 2) + "</div>";
+			return "<div style='display: inline-block;width:" + size * 2 + "px;height:" + size + "px;object-fit:contain'>" + htmlFromNode(node.Children[0], size) + htmlFromNode(node.Children[1], size) + "</div>";
 		}
 	}
 	else if(node.Parsed == false)

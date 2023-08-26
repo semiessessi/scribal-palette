@@ -532,19 +532,37 @@ function displayTree(tree, outputArea)
 		{
 			for(let block of word)
 			{
-				if(block.Parsed && (block.operation == null))
-				{
-					html += "<div style='width:80px;height:80px;object-fit:contain'><img style='width:80%;height:80%;object-fit:contain' src='./recoloured-tuxscribe-hieroglyphs/png/" + block.Symbol + ".png' /></div>";
-				}
-				else if(block.Parsed == false)
-				{
-					html += "<div style='width:80px;height:80px;object-fit:contain'><img style='width:80%;height:80%;object-fit:contain' src='./recoloured-tuxscribe-hieroglyphs/png/" + block.RawContent + ".png' /></div>";
-				}
+				html += htmlFromNode(block);
 			}
 		}
 	}
 	
 	outputArea.innerHTML = html;
+}
+
+function htmlFromNode(node, size = 80)
+{
+	if(node.Parsed && (node.Symbol != null))
+	{
+		return "<div style='width:" + size + "px;height:" + size + "px;object-fit:contain'><img style='width:80%;height:80%;object-fit:contain' src='./recoloured-tuxscribe-hieroglyphs/png/" + node.Symbol + ".png' /></div>";
+	}
+	else if(node.Parsed && (node.Operation != null))
+	{
+		if((node.Operation == ":") && (node.Children.length >= 2))
+		{
+			return "<div style='width:" + size + "px;height:" + size + "px;object-fit:contain'>" + htmlFromNode(node.Children[0], size / 2) + "<br/>" + htmlFromNode(node.Children[1], size / 2) + "</div>";
+		}
+		else if((node.Operation == "*") && (node.Children.length >= 2))
+		{
+			return htmlFromNode(node.Children[0], size / 2) + htmlFromNode(node.Children[1], size / 2);
+		}
+	}
+	else if(node.Parsed == false)
+	{
+		return "<div style='width:" + size + "px;height:" + size + "px;object-fit:contain'><img style='width:80%;height:80%;object-fit:contain' src='./recoloured-tuxscribe-hieroglyphs/png/" + node.RawContent + ".png' /></div>";
+	}
+	
+	return "?";
 }
 
 function updateOutputs(inputArea, outputAreas)

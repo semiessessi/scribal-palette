@@ -544,17 +544,17 @@ function htmlFromNode(node, size = 80)
 {
 	if(node.Parsed && (node.Symbol != null))
 	{
-		return "<div style='width:" + size + "px;height:" + size + "px;object-fit:contain'><img style='width:80%;height:80%;object-fit:contain' src='./recoloured-tuxscribe-hieroglyphs/png/" + node.Symbol + ".png' /></div>";
+		return "<div style='display: inline-block;width:" + size + "px;height:" + size + "px;object-fit:contain'><img style='width:80%;height:80%;object-fit:contain' src='./recoloured-tuxscribe-hieroglyphs/png/" + node.Symbol + ".png' /></div>";
 	}
 	else if(node.Parsed && (node.Operation != null))
 	{
 		if((node.Operation == ":") && (node.Children.length >= 2))
 		{
-			return "<div style='width:" + size + "px;height:" + size + "px;object-fit:contain'>" + htmlFromNode(node.Children[0], size / 2) + "<br/>" + htmlFromNode(node.Children[1], size / 2) + "</div>";
+			return "<span style='display: inline-block;width:" + size + "px;height:" + size + "px;object-fit:contain'>" + htmlFromNode(node.Children[0], size / 2) + "<br/>" + htmlFromNode(node.Children[1], size / 2) + "</span>";
 		}
 		else if((node.Operation == "*") && (node.Children.length >= 2))
 		{
-			return htmlFromNode(node.Children[0], size / 2) + htmlFromNode(node.Children[1], size / 2);
+			return "<span style='display: inline-block;width:" + size + "px;height:" + size + "px;object-fit:contain'>" + htmlFromNode(node.Children[0], size / 2) + htmlFromNode(node.Children[1], size / 2) + "</span>";
 		}
 	}
 	else if(node.Parsed == false)
@@ -564,7 +564,7 @@ function htmlFromNode(node, size = 80)
 		{
 			glyph = glyph.replace("AA", "J");
 		}
-		return "<div style='width:" + size + "px;height:" + size + "px;object-fit:contain'><img style='width:80%;height:80%;object-fit:contain' src='./recoloured-tuxscribe-hieroglyphs/png/" + glyph + ".png' /></div>";
+		return "<div style='display: inline-block;width:" + size + "px;height:" + size + "px;object-fit:contain'><img style='width:80%;height:80%;object-fit:contain' src='./recoloured-tuxscribe-hieroglyphs/png/" + glyph + ".png' /></div>";
 	}
 	
 	return "?";

@@ -559,7 +559,12 @@ function htmlFromNode(node, size = 80)
 	}
 	else if(node.Parsed == false)
 	{
-		return "<div style='width:" + size + "px;height:" + size + "px;object-fit:contain'><img style='width:80%;height:80%;object-fit:contain' src='./recoloured-tuxscribe-hieroglyphs/png/" + node.RawContent + ".png' /></div>";
+		let glyph = node.RawContent.toUpperCase();
+		if(glyph.startsWith("AA"))
+		{
+			glyph = glyph.replace("AA", "J");
+		}
+		return "<div style='width:" + size + "px;height:" + size + "px;object-fit:contain'><img style='width:80%;height:80%;object-fit:contain' src='./recoloured-tuxscribe-hieroglyphs/png/" + glyph + ".png' /></div>";
 	}
 	
 	return "?";

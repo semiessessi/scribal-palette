@@ -556,11 +556,11 @@ function htmlFromNode(node, size = 80)
 	{
 		if((node.Operation == ":") && (node.Children.length >= 2))
 		{
-			return "<span style='display: inline-block;width:" + size + "px;height:" + size + "px;object-fit:contain'>" + htmlFromNode(node.Children[0], size / 2) + "<br/>" + htmlFromNode(node.Children[1], size / 2) + "</span>";
+			return "<div style='display: inline-block;width:" + size + "px;height:" + size + "px;object-fit:contain'>" + htmlFromNode(node.Children[0], size / 2) + "<br/>" + htmlFromNode(node.Children[1], size / 2) + "</div>";
 		}
 		else if((node.Operation == "*") && (node.Children.length >= 2))
 		{
-			return "<span style='display: inline-block;width:" + size + "px;height:" + size + "px;object-fit:contain'>" + htmlFromNode(node.Children[0], size / 2) + htmlFromNode(node.Children[1], size / 2) + "</span>";
+			return "<div style='display: inline-block;width:" + size + "px;height:" + size + "px;object-fit:contain'>" + htmlFromNode(node.Children[0], size / 2) + htmlFromNode(node.Children[1], size / 2) + "</div>";
 		}
 	}
 	else if(node.Parsed == false)

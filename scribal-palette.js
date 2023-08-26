@@ -496,11 +496,11 @@ function displayTree(tree, outputArea)
 			{
 				if(block.Parsed && (block.operation == null))
 				{
-					html += "<img height='80' src='./recoloured-tuxscribe-hieroglyphs/png/" + block.Symbol + ".png' />";
+					html += "<div style='width:80px;height:80px;object-fit:contain'><img style='width:80%;height:80%;object-fit:contain' src='./recoloured-tuxscribe-hieroglyphs/png/" + block.Symbol + ".png' /></div>";
 				}
 				else
 				{
-					html += "<img height='80' src='./recoloured-tuxscribe-hieroglyphs/png/" + block.RawContent + ".png' />";
+					html += "<div style='width:80px;height:80px;object-fit:contain'><img style='width:80%;height:80%;object-fit:contain' src='./recoloured-tuxscribe-hieroglyphs/png/" + block.RawContent + ".png' /></div>";
 				}
 			}
 		}

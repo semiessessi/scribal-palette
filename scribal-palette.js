@@ -430,6 +430,7 @@ function inputToTree(
 			Direction: glyphDirection,
 			RawContent: block,
 			Parsed: false,
+			Children: [],
 		};
 		
 		if(gardineringLookup.has(block))
@@ -442,6 +443,43 @@ function inputToTree(
 				Parsed: true,
 				Symbol: gardineringLookup.get(block),
 				Operation: null,
+				Children: [],
+			};
+		}
+		
+		// for now check for one : (not ideal)
+		if(block.includes(":"))
+		{
+			const i = block.indexOf(':')
+			result =
+			{
+				TableLayout: layout,
+				Direction: glyphDirection,
+				RawContent: block,
+				Parsed: true,
+				Symbol: null,
+				Operation: ':',
+				Children: [
+					parseBlock(block.slice(0, i)),
+					parseBlock(block.slice(i + 1))],
+			};
+		}
+		
+		// for now check for one * (not ideal)
+		if(block.includes("*"))
+		{
+			const i = block.indexOf('*')
+			result =
+			{
+				TableLayout: layout,
+				Direction: glyphDirection,
+				RawContent: block,
+				Parsed: true,
+				Symbol: null,
+				Operation: '*',
+				Children: [
+					parseBlock(block.slice(0, i)),
+					parseBlock(block.slice(i + 1))],
 			};
 		}
 		
@@ -498,7 +536,7 @@ function displayTree(tree, outputArea)
 				{
 					html += "<div style='width:80px;height:80px;object-fit:contain'><img style='width:80%;height:80%;object-fit:contain' src='./recoloured-tuxscribe-hieroglyphs/png/" + block.Symbol + ".png' /></div>";
 				}
-				else
+				else if(block.Parsed == false)
 				{
 					html += "<div style='width:80px;height:80px;object-fit:contain'><img style='width:80%;height:80%;object-fit:contain' src='./recoloured-tuxscribe-hieroglyphs/png/" + block.RawContent + ".png' /></div>";
 				}

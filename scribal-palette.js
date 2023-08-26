@@ -491,8 +491,8 @@ function inputToTree(
 	}
 
 	let tree = [];
-	// the ! seperate the lines.
-	const lines = pseudoMdCInput.split("!");
+	// the ! seperate the lines. remove all other pointless whitespaces
+	const lines = pseudoMdCInput.replace((/  |\r\n|\n|\r/gm),"").split("!");
 	for(const line of lines)
 	{
 		let firstSubTree = [];
@@ -565,6 +565,11 @@ function htmlFromNode(node, size = 80)
 	}
 	else if(node.Parsed == false)
 	{
+		if(node.RawContent == "")
+		{
+			return "";
+		}
+		
 		let glyph = node.RawContent.toUpperCase();
 		if(glyph.startsWith("AA"))
 		{

@@ -1,0 +1,24 @@
+<html>
+<head>
+<script src="./scribal-palette.js"></script>
+<!--<link rel="stylesheet" href="./style.css" type="text/css">-->
+<title>Scribal Palette</title>
+</head>
+<body>
+<div style="width: 100%; display: flex">
+	<div style=" display: inline-block; width: 50%"> 
+		<textarea id="input-field" name="input-field" rows="40" style="width: 100%">
+innit
+		</textarea>
+	</div>
+	<div id="display-area" style="display: inline-block">
+blud
+	</div>
+</div>
+<script>
+	registerInputArea(
+		document.getElementById("input-field"),
+		[document.getElementById("display-area")]);
+</script>
+</body>
+</html>

@@ -432,16 +432,20 @@ function inputToTree(
 			Parsed: false,
 			Children: [],
 		};
-		
 		if(gardineringLookup.has(block))
 		{
+			let glyph = gardineringLookup.get(block).toUpperCase();
+			if(glyph.startsWith("AA"))
+			{
+				glyph = glyph.replace("AA", "J");
+			}
 			result =
 			{
 				TableLayout: layout,
 				Direction: glyphDirection,
 				RawContent: block,
 				Parsed: true,
-				Symbol: gardineringLookup.get(block),
+				Symbol: glyph,
 				Operation: null,
 				Children: [],
 			};
